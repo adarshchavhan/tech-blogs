@@ -1,0 +1,26 @@
+@import '../../main.scss';
+
+.category__posts {
+    .posts {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+
+        @include mobile {
+            flex-direction: column;
+        }
+
+        .posts__wrapper {
+            width: calc(100% / 2 - 13px);
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+
+            @include mobile {
+                width: 100%;
+                min-width: 300px;
+            }
+        }
+    }
+}

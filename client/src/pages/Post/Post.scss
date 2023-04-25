@@ -1,0 +1,222 @@
+@import '../../main.scss';
+
+.post__page {
+    .container {
+        @include container;
+        min-height: calc(100vh - 60px);
+        display: flex;
+        gap: 25px;
+
+        @include laptop {
+            max-width: 760px;
+            flex-direction: column;
+        }
+
+        @include mobile {
+            max-width: 430px;
+        }
+
+        .content {
+            flex: 1;
+            padding: 25px 15px;
+
+            .breadcrumb {
+                color: $gray-color;
+                font-size: 13px;
+                @include mobile{
+                    font-size: 12px;
+                }
+            }
+
+            .title {
+                color: $text-color;
+                font-size: 32px;
+                font-weight: 600;
+                margin-top: 25px;
+                margin-bottom: 5px;
+
+                @include mobile {
+                    font-size: 26px;
+                }
+            }
+
+            .info {
+                color: $gray-color;
+                font-size: 12px;
+
+                a {
+                    font-weight: 500;
+                    color: $text-color;
+                }
+            }
+
+            .img {
+                padding: 25px 0;
+                display: flex;
+                justify-content: center;
+
+                img {
+                    width: 100%;
+                    max-width: 568px;
+                    border-radius: 5px;
+                }
+            }
+
+            .desc {
+                color: $text-color;
+                font-size: 16px;
+                line-height: 200%;
+
+                @include mobile {
+                    font-size: 14px;
+                }
+            }
+
+            .share__links {
+                padding: 20px 0;
+                color: $text-color;
+
+                div {
+                    padding: 15px 0;
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    gap: 10px;
+
+                    a {
+                        display: flex;
+                        align-items: center;
+                        border: 1px solid $shadow-color;
+                        padding: 5px 10px;
+                        gap: 15px;
+                        border-radius: 7px;
+
+                        span {
+                            font-size: 14px;
+                            text-transform: capitalize;
+                        }
+                    }
+                }
+            }
+
+            .author__section {
+                margin: 25px 0;
+                padding: 25px 0;
+                border-top: 1px solid $shadow-color;
+                border-bottom: 1px solid $shadow-color;
+                display: flex;
+                align-items: flex-start;
+                gap: 25px;
+
+                @include mobile {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .img {
+                    margin: 0;
+
+                    img {
+                        width: 150px;
+                        height: 150px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                        background: $shadow-color;
+                    }
+                }
+
+                .info {
+                    padding-top: 25px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    @include mobile {
+                        align-items: center;
+                    }
+
+                    .author__name {
+                        font-size: 22px;
+                        font-family: $font2;
+                        font-weight: 600;
+                        color: $text-color;
+                        text-transform: uppercase;
+                    }
+
+                    .author__desc {
+                        max-width: 600px;
+                        font-size: 16px;
+                        line-height: 28px;
+                        color: $text-color;
+
+                        @include mobile {
+                            font-size: 14px;
+                        }
+                    }
+
+                    .author__social {
+                        margin-top: 10px;
+                        display: flex;
+                        gap: 10px;
+
+                        span {
+                            color: $text-color;
+                            font-size: 18px;
+                            padding: 5px;
+                            cursor: pointer;
+                        }
+                    }
+
+
+                }
+            }
+
+            .rheading {
+                font-size: 22px;
+                font-weight: 600;
+                color: $text-color;
+
+                @include mobile {
+                    font-size: 18px;
+                }
+            }
+
+            .random__posts {
+                width: 100%;
+                display: flex;
+                gap: 25px;
+                overflow: auto;
+                border-radius: 5px;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
+                .rpost {
+                    width: calc(100% / 3 - 16px);
+                    min-width: 200px;
+
+                    .img {
+                        img {
+                            width: 100%;
+                            height: 160px;
+                            object-fit: cover;
+                            background: $shadow-color;
+                        }
+                    }
+
+                    .text {
+                        .title {
+                            font-size: 14px;
+                        }
+
+                        .date {
+                            color: $gray-color;
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

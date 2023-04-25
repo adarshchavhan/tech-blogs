@@ -1,0 +1,147 @@
+@import '../../main.scss';
+
+.profile__page {
+    .container {
+        @include container;
+        min-height: calc(100vh - 60px);
+        display: flex;
+        gap: 25px;
+
+        @include laptop {
+            max-width: 760px;
+            flex-direction: column;
+        }
+
+        @include mobile {
+            max-width: 430px;
+        }
+
+        .content {
+            flex: 1;
+            padding: 25px 15px;
+
+            .breadcrumb {
+                color: $gray-color;
+                font-size: 13px;
+
+                span {
+                    text-transform: capitalize;
+                }
+            }
+
+            .heading {
+                padding: 15px 0;
+                color: $text-color;
+                font-size: 24px;
+                font-weight: 600;
+                text-align: center;
+                text-transform: uppercase;
+            }
+
+            .author__section {
+                margin: 25px 0;
+                padding: 25px;
+                border: 1px solid $shadow-color;
+                border-radius: 5px;
+                display: flex;
+                align-items: flex-start;
+                gap: 25px;
+
+                @include mobile {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .img {
+                    margin: 0;
+
+                    img {
+                        width: 150px;
+                        height: 150px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                        background: $shadow-color;
+                    }
+                }
+
+                .info {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    @include mobile {
+                        align-items: center;
+                    }
+
+                    .top {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+
+                        @include mobile {
+                            flex-direction: column;
+                        }
+
+                        .author__name {
+                            font-size: 24px;
+                            font-family: $font2;
+                            font-weight: 600;
+                            color: $text-color;
+                            text-transform: uppercase;
+                        }
+
+                        .update__btn {
+                            padding: 5px 21px;
+                            background: transparent;
+                            color: $text-color;
+                            border: 1px solid $text-color;
+                            border-radius: 5px;
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            font-family: $font2;
+                            font-size: 14px;
+
+                            &:hover {
+                                opacity: .8;
+                            }
+                        }
+                    }
+
+
+                    .author__desc {
+                        max-width: 600px;
+                        font-size: 14px;
+                        line-height: 26px;
+                        color: $text-color;
+
+                        @include mobile {
+                            font-size: 14px;
+                        }
+                    }
+
+                    .author__social {
+                        margin-top: 10px;
+                        display: flex;
+                        gap: 10px;
+
+                        span {
+                            color: $text-color;
+                            font-size: 18px;
+                            padding: 5px;
+                            cursor: pointer;
+                        }
+                    }
+
+
+                }
+            }
+
+            .posts {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 25px;
+            }
+        }
+    }
+}

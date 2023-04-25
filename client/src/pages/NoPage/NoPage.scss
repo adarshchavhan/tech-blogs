@@ -1,0 +1,33 @@
+@import '../../main.scss';
+
+.no__page {
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    h1 {
+        font-size: 80px;
+        color: $text-color;
+    }
+
+    p {
+        font-size: 16px;
+        color: $text-color;
+    }
+
+    a {
+        color: $text-color;
+        padding: 10px 30px;
+        background: transparent;
+        border: 1px solid;
+        border-radius: 5px;
+
+        &:hover {
+            opacity: .7;
+        }
+    }
+}

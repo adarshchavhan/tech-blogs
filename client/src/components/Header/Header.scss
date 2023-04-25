@@ -1,0 +1,209 @@
+@import '../../main.scss';
+
+.header {
+    width: 100%;
+    height: 64px;
+    padding: 0 10px;
+    box-shadow: 0 0 4px $shadow-color;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: $bg-color;
+
+    .backdrop {
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    .container {
+        @include container;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .header__left {
+            display: flex;
+            justify-content: space-between;
+
+            .logo {
+                color: $text-color;
+                font-size: 24px;
+                font-weight: 600;
+                padding: 10px;
+
+                @include laptop {
+                    padding: 5px;
+                    width: calc(100% - 20px);
+                    text-align: center;
+                    position: absolute;
+                    left: 10px;
+                    z-index: -1;
+                }
+            }
+
+            .cat__button {
+                font-size: 18px;
+                padding: 10px;
+                display: none;
+
+                @include laptop {
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+
+        .header__right {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            @include laptop {
+                width: fit-content;
+            }
+
+            .category__menu {
+                a {
+                    color: $text-color;
+                    padding: 10px;
+                    font-size: 14px;
+                }
+
+                @include laptop {
+                    width: 250px;
+                    height: 100vh;
+                    background: $bg-color;
+                    padding: 60px 0;
+                    display: flex;
+                    flex-direction: column;
+                    box-shadow: 0 5px 10px $shadow-color;
+                    position: fixed;
+                    top: 0;
+                    left: -250px;
+                    transition: .07s ease-in-out;
+
+                    &.show {
+                        left: 0;
+                    }
+
+                    a {
+                        padding: 15px 20px;
+
+                        &:hover {
+                            background: $shadow-color;
+                        }
+                    }
+                }
+            }
+
+            .nav {
+                display: flex;
+                gap: 10px;
+
+                .search {
+                    padding: 0;
+                    border-radius: 5px;
+                    display: flex;
+                    align-items: center;
+                    overflow: hidden;
+
+                    &:focus-within {
+                        .box {
+                            width: calc(100% - 30px);
+                            background: $bg-color;
+                            border: 1px solid $shadow-color;
+                            position: absolute;
+                            left: 15px;
+                            z-index: 2;
+                            border-radius: 5px;
+                            display: flex;
+
+                            input {
+                                width: 100%;
+                                display: flex;
+                            }
+
+                            .clear__btn {
+                                display: flex;
+                            }
+                        }
+                    }
+
+                    .box {
+                        display: none;
+                    }
+
+                    input {
+                        width: 100%;
+                        padding: 10px;
+                        background: transparent;
+                        color: $text-color;
+                        font-size: 16px;
+                        text-align: center;
+                    }
+
+                    button {
+                        padding: 10px;
+                        color: $text-color;
+                        font-size: 18px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    .clear__btn {
+                        display: none;
+                    }
+
+                }
+
+                .profile {
+                    position: relative;
+
+                    .profile__btn {
+                        padding: 10px;
+                        font-size: 16px;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .profile__menu {
+                        width: 125px;
+                        padding-bottom: 20px;
+                        background: $white-color;
+                        box-shadow: 0px 0px 5px $shadow-color;
+                        border-radius: 5px;
+                        position: absolute;
+                        top: 100%;
+                        right: 0;
+                        overflow-y: hidden;
+                        display: none;
+                        flex-direction: column;
+
+                        &.show {
+                            display: flex;
+                        }
+
+                        a,
+                        button {
+                            width: 100%;
+                            padding: 7px 10px;
+                            cursor: pointer;
+                            font-size: 13px;
+                            text-align: left;
+
+                            &:hover {
+                                background: $shadow-color;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

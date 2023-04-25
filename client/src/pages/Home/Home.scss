@@ -1,0 +1,53 @@
+@import '../../main.scss';
+
+.home__page {
+    .container {
+        @include container;
+        min-height: calc(100vh - 60px);
+        display: flex;
+        gap: 25px;
+
+        @include laptop {
+            max-width: 760px;
+            flex-direction: column;
+        }
+
+        @include mobile {
+            max-width: 430px;
+        }
+
+        .content__wrapper {
+            flex: 1;
+            padding: 15px;
+
+            .heading {
+                color: $text-color;
+                font-size: 20px;
+                font-weight: 600;
+                padding: 7px 0;
+                margin: 20px 0;
+                position: relative;
+
+                &::after {
+                    content: '';
+                    width: 50px;
+                    height: 4px;
+                    background: $primary-color;
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                }
+            }
+
+            .latest__posts {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 25px;
+
+                @include mobile {
+                    flex-direction: column;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,354 @@
+@import '../../main.scss';
+
+.edit__post {
+    .backdrop {
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        background: $shadow-color;
+    }
+
+    .model {
+        width: calc(100% - 30px);
+        max-width: 768px;
+        height: 500px;
+        padding: 0px 30px;
+        padding-bottom: 15px;
+        background: $bg-color;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        z-index: 2;
+        border-radius: 5px;
+        box-shadow: 0 0 10px $shadow-color;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        @include tab {
+            width: 100%;
+            height: calc(100vh - 70px);
+            margin: 0;
+            top: 70px;
+        }
+
+        @include mobile {
+            padding: 10px 15px;
+        }
+
+        .top {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            background: $bg-color;
+
+            .heading {
+                color: $text-color;
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            button {
+                width: 40px;
+                height: 40px;
+                font-size: 26px;
+                position: relative;
+                right: -30px;
+                top: 0px;
+
+                @include mobile {
+                    right: -15px;
+                }
+            }
+        }
+
+        form {
+            @include container;
+            min-height: calc(100vh - 60px);
+            display: flex;
+            max-width: 760px;
+            flex-direction: column;
+            gap: 0;
+
+            @include mobile {
+                max-width: 430px;
+            }
+
+
+            .error__box {
+                background: rgba(255, 0, 0, .05);
+                color: red;
+                text-transform: lowercase;
+                font-size: 13px;
+                padding: 5px 10px;
+                margin-bottom: 15px;
+                border: 1px solid rgba(255, 0, 0, .05);
+                border-radius: 5px;
+            }
+
+            .field {
+
+                input,
+                textarea {
+                    width: 100%;
+                    padding: 10px;
+                    color: $text-color;
+                    background: inherit;
+                    font-size: 14px;
+                    font-family: $font1;
+                    border: 1px solid $shadow-color;
+                    border-radius: 5px;
+                    line-height: 200%;
+                    resize: vertical;
+
+                    &:focus-within {
+                        border: 1px solid $gray-color;
+                    }
+                }
+
+                .select__container {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+
+                    &:focus-within {
+                        select {
+                            border: 1px solid $text-color;
+                        }
+
+                        .icon {
+                            .up {
+                                display: block;
+                            }
+
+                            .down {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    select {
+                        width: 100%;
+                        padding: 10px 30px;
+                        margin: 10px 0;
+                        border: none;
+                        outline: none;
+                        appearance: none;
+                        background: transparent;
+                        border: 1px solid $shadow-color;
+                        font-family: $font1;
+                        color: $text-color;
+                        font-size: 14px;
+                        border-radius: 5px;
+
+                        option {
+                            padding: 10px;
+                            height: 40px !important;
+                        }
+                    }
+
+                    .icon {
+                        width: fit-content;
+                        font-size: 20px;
+                        position: absolute;
+                        right: 10px;
+                        top: 18px;
+                        color: $text-color;
+
+                        .up {
+                            display: none;
+                        }
+                    }
+                }
+
+                .submit__btn {
+                    width: 100%;
+                    height: 40px;
+                    color: $white-color;
+                    background: $text-color;
+                    font-size: 14px;
+                    font-family: $font1;
+                    text-transform: uppercase;
+                    font-weight: 500;
+                    border-radius: 5px;
+                    margin-bottom: 15px;
+
+                    &:hover {
+                        opacity: .9;
+                    }
+                }
+
+                .name {
+                    font-size: 12px;
+                    font-weight: 500;
+                    color: $gray-color;
+                }
+
+                .error__msg {
+                    width: 100%;
+                    height: 20px;
+                    display: inline-block;
+                    color: red;
+                    font-size: 13px;
+                }
+
+                .redirect {
+                    margin-top: 10px;
+                    font-size: 13px;
+                    color: $text-color;
+
+                    a {
+                        color: $primary-color;
+                        font-weight: 500;
+                    }
+                }
+
+                .field-wrapper.quill {
+                    word-break: break-all;
+
+                    .quill {
+                        .ql-toolbar {
+                            border-radius: 5px 5px 0 0;
+                        }
+
+                        .ql-container {
+                            border-radius: 0 0 5px 5px;
+                        }
+                    }
+
+                    button {
+                        font-size: 10px;
+                        background: none;
+                        padding: 4px;
+                    }
+                }
+
+                &.image {
+                    margin-bottom: 15px;
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                    flex-direction: column-reverse;
+
+                    @include mobile {
+                        flex-direction: column;
+                    }
+
+                    input[type='file'] {
+                        display: none;
+                    }
+
+
+                    .btn__wrapper {
+                        width: 100%;
+                        display: flex;
+                        gap: 10px;
+
+                        label {
+                            width: 100%;
+                            padding: 10px 30px;
+                            color: $text-color;
+                            text-align: center;
+                            border: 1px solid $text-color;
+                            border-radius: 5px;
+                            font-size: 12px;
+                            cursor: pointer;
+
+                            &:hover {
+                                opacity: .7;
+                            }
+                        }
+
+                        button {
+                            width: 100%;
+                            text-align: center;
+                            padding: 10px;
+                            color: $text-color;
+                            border: 1px solid $text-color;
+                            border-radius: 5px;
+                            font-size: 12px;
+                            width: 100%;
+                        }
+                    }
+
+                    img {
+                        border-radius: 5px;
+                        width: 350px;
+                        height: 240px;
+                        margin: 10px auto;
+                        object-fit: cover;
+                    }
+                }
+            }
+
+            .field.topics {
+                .inner__container {
+                    padding: 0 10px;
+                    padding-top: 10px;
+                    margin: 10px 0;
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    gap: 15px;
+                    border: 1px solid $shadow-color;
+                    border-radius: 5px;
+
+                    &:focus-within {
+                        border: 1px solid $text-color;
+                    }
+
+                    .topic__item {
+                        padding: 2px 7px;
+                        background: $shadow-color;
+                        display: flex;
+                        gap: 5px;
+                        border-radius: 5px;
+
+                        span {
+                            cursor: pointer;
+                        }
+                    }
+
+                    input {
+                        border: 0;
+                        width: 100%;
+                        min-width: 50px;
+                    }
+                }
+            }
+
+            .field.quill {
+                word-break: break-all;
+
+                .quill {
+                    .ql-toolbar {
+                        border-radius: 5px 5px 0 0;
+                    }
+
+                    .ql-container {
+                        border-radius: 0 0 5px 5px;
+                    }
+                }
+
+                button {
+                    font-size: 10px;
+                    background: none;
+                    padding: 4px;
+                }
+            }
+        }
+    }
+}
