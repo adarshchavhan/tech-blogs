@@ -184,7 +184,7 @@
                     text-transform: uppercase;
                     font-weight: 500;
                     border-radius: 5px;
-                    margin-bottom: 15px;
+                    margin-bottom: 50px;
 
                     &:hover {
                         opacity: .9;
@@ -290,6 +290,9 @@
                         height: 240px;
                         margin: 10px auto;
                         object-fit: cover;
+                         @include mobile{
+                            width: calc(100% - 30px);
+                        }
                     }
                 }
             }
