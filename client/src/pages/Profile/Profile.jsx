@@ -23,6 +23,7 @@ const Profile = ({ type }) => {
         setAuthor(data.user)
       }
         if(type==='me'){
+          await dispatch(loadUser());
           setAuthor(currentUser);
         }
 
