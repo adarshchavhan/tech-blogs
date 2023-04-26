@@ -25,7 +25,6 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getCategories());
-    dispatch(clearError());
   }, []);
 
   useEffect(() => {
