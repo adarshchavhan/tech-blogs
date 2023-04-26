@@ -25,14 +25,13 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getCategories());
-    dispatch(clearError());
   }, []);
 
   useEffect(() => {
     if (message) {
       toast.success(message)
-      dispatch(clearError());
     }
+    dispatch(clearError());
   }, [message]);
 
   useEffect(()=>{
