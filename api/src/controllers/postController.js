@@ -230,7 +230,12 @@ exports.getRandomPosts = async (req, res, next) => {
 exports.getUserPosts = async (req, res, next) => {
     try {
         const username = req.params.username;
-        const posts = await Post.find({ username }).populate('author').sort({ createdAt: -1 });
+        const user = await User.findOne({username});
+        if(!user){
+            return next(createError(404, 'User not found'))
+        }
+
+        const posts = await Post.find({author: user._id}).populate('author').sort({createdAt: -1})
 
         res.send({
             success: true,
