@@ -11,24 +11,35 @@ import { loadUser } from '../../redux/actions/userActions';
 const Profile = ({ type }) => {
   const [author, setAuthor] = useState({});
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const {currentUser} = useSelector(state => state.user);
   const { username } = useParams();
   
   const dispatch = useDispatch();
 
+  
   useEffect(() => {
     const fetchData = async () => {
-      if (type === 'user') {
-        const { data } = await axios(`/users/${username}`);
-        setAuthor(data.user)
-      }
-        if(type==='me'){
-          await dispatch(loadUser());
-          setAuthor(currentUser);
-        }
-
-      const { data } = await axios.get(`/posts/user/${author.username}`);
-      setPosts(data.posts)
+      try {
+        setLoading(true);
+          if (type === 'user') {
+            const { data:{user} } = await axios(`/users/${username}`);
+            const { data:{posts} } = await axios.get(`/posts/user/${username}`);
+            setAuthor(user)
+            setPosts(posts)
+          }
+          if(type==='me'){
+            const { data:{user} } = await axios(`/users/${currentUser?.username}`);
+            const { data:{posts} } = await axios.get(`/posts/user/${currentUser?.username}`);
+            setAuthor(user)
+            setPosts(posts)
+          }
+          setLoading(false);
+        
+      } catch (error) {
+        setLoading(false);
+        console.log(error)    
+      }  
     }
 
     fetchData();
@@ -36,6 +47,7 @@ const Profile = ({ type }) => {
 
   return author && (
     <div className="profile__page">
+      {loading===false ?
       <div className="container">
         <div className="content">
           <div className="breadcrumb">
@@ -78,11 +90,14 @@ const Profile = ({ type }) => {
           </div>
 
           <div className="posts">
-            {posts.map(post => <Card type='profile' key={post._id} post={post} isAccount={type === 'me' && true} />)}
+            {posts.length>0  ? posts.map(post => <Card type='profile' key={post?._id} post={post} isAccount={type === 'me' && true} />)
+            : <p style={{padding:'50px', textAlign:'center', width:'100%', opacity:'.4'}}>No post yet.</p>}
           </div>
         </div>
         <SidePosts type='recent' author={author} />
-      </div>
+      </div>:
+        <div className='main__loader'></div>
+       } 
     </div>
   )
 }

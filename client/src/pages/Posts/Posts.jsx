@@ -7,6 +7,7 @@ import './Posts.scss'
 
 const Posts = ({ type }) => {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { category } = useParams();
@@ -15,9 +16,12 @@ const Posts = ({ type }) => {
     if (type === 'search') {
       const fetchPosts = async () => {
         try {
+          setLoading(true);
           const { data } = await axios.get(`/posts/search?q=${searchParams.get('q')}`);
           setPosts(data.posts);
+          setLoading(false);
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -29,9 +33,12 @@ const Posts = ({ type }) => {
     if (type !== 'search') {
       const fetchPosts = async () => {
         try {
+          setLoading(true);
           const { data } = await axios.get(`/posts/category/${category}`);
+          setLoading(false);
           setPosts(data.posts);
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       }
@@ -41,7 +48,8 @@ const Posts = ({ type }) => {
 
   return (
     <div className="posts__page">
-      <div className="container">
+        <div className="container">
+      {loading===false ?
         <div className="content">
           <div className="breadcrumb">
             <Link to='/'>Home</Link> » {type !== 'search' ? category : `You Searched for ${searchParams.get('q')}`}
@@ -59,9 +67,11 @@ const Posts = ({ type }) => {
             {posts?.length > 0 && posts.map(post => <Card key={post._id} post={post} type='lg' />)}
             {posts?.length <= 0 && <p className='empty__msg'>Sorry, but nothing matched your search terms.Please try again with some different keywords.</p>}
           </div>
-        </div>
+        </div>:
+        <div className='main__loader'></div>
+       } 
         <SidePosts type='recent' />
-      </div>
+      </div> 
     </div>
   )
 }

@@ -10,6 +10,7 @@ import './Post.scss'
 
 const Post = () => {
   const [randomPosts, setRandomPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const { postId } = useParams();
   const { currentPost: post } = useSelector(state => state.post);
@@ -19,10 +20,13 @@ const Post = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
+        setLoading(true);
         dispatch(getPost(postId));
         const { data: randomData } = await axios.get(`/posts/random`);
         setRandomPosts(randomData.posts);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.log(error);
       }
     }
@@ -31,6 +35,7 @@ const Post = () => {
 
   return post && (
     <div className="post__page">
+      {loading===false ?
       <div className="container">
         <div className="content">
 
@@ -121,7 +126,9 @@ const Post = () => {
         </div>
         <SidePosts type='releted' postId={post._id} />
 
-      </div>
+      </div>:
+        <div className='main__loader'></div>
+       } 
     </div>
   )
 }
